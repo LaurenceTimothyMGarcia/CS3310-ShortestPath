@@ -17,6 +17,11 @@ public class ShortestPath
         int graphSize = keyboardInput(kb);
 
         int graph[][] = new int[graphSize][graphSize];
+
+        graph = buildGraph(graph, graphSize);
+
+        System.out.println("Graph: ");
+        printGraph(graph);
     }
 
     public static int keyboardInput(Scanner kb)
@@ -29,8 +34,8 @@ public class ShortestPath
         return input;
     }
 
-    //Builds random graph in a matrix
-    public static int[][] buildGraph(graph[][], size)
+    /*** Builds random graph in a matrix ***/
+    public static int[][] buildGraph(int graph[][], int size)
     {
         Random rand = new Random();
 
@@ -40,11 +45,28 @@ public class ShortestPath
             {
                 if (i == j)
                 {
-                    graph[0][0] = 0;
+                    graph[i][j] = 0;
+                }
+                else
+                {
+                    graph[i][j] = rand.nextInt(10);
                 }
             }
         }
 
         return graph;
+    }
+
+    /*** Prints out the graph in matrix form ***/
+    public static void printGraph(int[][] graph)
+    {
+        for (int i = 0; i < graph.length; i++)
+        {
+            for (int j = 0; j < graph[i].length; j++)
+            {
+                System.out.print(graph[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 }
