@@ -37,6 +37,8 @@ public class ShortestPath
 
         System.out.println("Graph: ");
         printGraph(graph);
+
+        dijkstraAlgorithm(graph, graphSize);
     }
 
     public static int keyboardInput(Scanner kb)
@@ -109,11 +111,23 @@ public class ShortestPath
         }
     }
 
+    /*** Prints out array for debugging ***/
+    public static void printArray(int[] graph)
+    {
+        for (int i = 0; i < graph.length; i++)
+        {
+            System.out.print(graph[i] + " ");
+        }
+
+        System.out.println();
+    }
+
 
     /*** Dijkstras Algorithm ***/
     public static void dijkstraAlgorithm(int[][] graph, int size)
     {
         int[] shortPath = new int[size];
+        int selNode = 0;
 
         //Adds pathways from starting node
         for (int i = 0; i < size; i++)
@@ -123,7 +137,30 @@ public class ShortestPath
 
         for (int i = 0; i < size; i++)
         {
+            int smallNode = 0;
+            int smallVal = 0;
 
+            for (int j = 0; j < size; j++)
+            {
+                if (smallVal == 0 && graph[selNode][j] != 0)
+                {
+                    smallVal = graph[selNode][j];
+                }
+
+                if (smallVal > graph[selNode][j])
+                {
+                    smallVal = graph[selNode][j];
+                    smallNode = j;
+                }
+            }
+
+            selNode = smallNode;
+            shortPath[selNode] = smallVal;  //places smallest value into graph
+
+            System.out.println("SelNode: " + selNode);
+            System.out.println("Shortest Path nodes: ");
+            printArray(shortPath);
+            System.out.println();
         }
     }
 
