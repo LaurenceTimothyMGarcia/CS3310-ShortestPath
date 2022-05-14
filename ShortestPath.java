@@ -111,7 +111,21 @@ public class ShortestPath
 
 
     /*** Dijkstras Algorithm ***/
+    public static void dijkstraAlgorithm(int[][] graph, int size)
+    {
+        int[] shortPath = new int[size];
 
+        //Adds pathways from starting node
+        for (int i = 0; i < size; i++)
+        {
+            shortPath[i] = graph[0][i];
+        }
+
+        for (int i = 0; i < size; i++)
+        {
+
+        }
+    }
 
     /*** Floyd Warshall Algorithm ***/
 }
