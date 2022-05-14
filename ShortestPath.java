@@ -16,7 +16,7 @@ public class ShortestPath
 
         int graphSize = keyboardInput(kb);
 
-        int graph[][] = new int[][];
+        int graph[][] = new int[graphSize][graphSize];
     }
 
     public static int keyboardInput(Scanner kb)
@@ -27,5 +27,24 @@ public class ShortestPath
         input = kb.nextInt();
 
         return input;
+    }
+
+    //Builds random graph in a matrix
+    public static int[][] buildGraph(graph[][], size)
+    {
+        Random rand = new Random();
+
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                if (i == j)
+                {
+                    graph[0][0] = 0;
+                }
+            }
+        }
+
+        return graph;
     }
 }
