@@ -60,6 +60,10 @@ public class ShortestPath
         System.out.println((double) ((end - start) / 1000000.0) + " Milliseconds");
         printResults(dijkstra);
         System.out.println();
+
+
+        /*** Floyd-Warshall Algorithm ***/
+        //Times and runs Floyd-Warshall Algorithm
     }
 
     public static int keyboardInput(Scanner kb)
@@ -212,4 +216,5 @@ public class ShortestPath
     }
 
     /*** Floyd Warshall Algorithm ***/
+    
 }
