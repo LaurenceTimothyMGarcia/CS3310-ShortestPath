@@ -241,12 +241,22 @@ public class ShortestPath
                         continue;
                     }
 
-                    if (shortPath[i][j] > shortPath[i][k] + shortPath[k][j] || shortPath[i][j] == 0)
+                    if (graph[i][k] == 0 || graph[k][j] == 0)
+                    {
+                        continue;
+                    }
+
+                    if (graph[i][j] > graph[i][k] + graph[k][j] || shortPath[i][j] == 0)
                     {
                         shortPath[i][j] = shortPath[i][k] + shortPath[k][j];
                     }
                 }
             }
+
+            graph = shortPath;
+
+            printGraph(shortPath);
+            System.out.println();
         }
 
         return shortPath;
