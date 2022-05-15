@@ -20,7 +20,7 @@ public class ShortestPath
 
         //Arrays for results of graphs
         int[] dijkstra;
-        int[] warshall;
+        int[][] warshall;
 
         //Setting up graph
         int graphSize = keyboardInput(kb);
@@ -64,6 +64,15 @@ public class ShortestPath
 
         /*** Floyd-Warshall Algorithm ***/
         //Times and runs Floyd-Warshall Algorithm
+        start = System.nanoTime();
+        warshall = FWarshallAlgorithm(graph, graphSize);
+        end = System.nanoTime();
+
+        //Prints out Floyd-Warshall Algorithm
+        System.out.println("Floyd-Warshall Algorithm");
+        System.out.println((double) ((end - start) / 1000000.0) + " Milliseconds");
+        printGraph(warshall);
+        System.out.println();
     }
 
     public static int keyboardInput(Scanner kb)
@@ -205,6 +214,7 @@ public class ShortestPath
                 shortPath[selNode] = prevSmallVal;  //places smallest value into graph
             }
 
+            //Debugging
             /*System.out.println("SelNode: " + selNode);
             System.out.println("Previous Small Value: " + prevSmallVal);
             System.out.println("Shortest Path nodes: ");
@@ -216,8 +226,29 @@ public class ShortestPath
     }
 
     /*** Floyd Warshall Algorithm ***/
-    public static void FWarshallAlgorithm (int[][] graph, int size)
+    public static int[][] FWarshallAlgorithm (int[][] graph, int size)
     {
-        
+        int[][] shortPath = graph;
+
+        for (int k = 0; k < size; k++)
+        {
+            for (int i = 0; i < size; i++)
+            {
+                for (int j = 0; j < size; j++)
+                {
+                    if (i == j)
+                    {
+                        continue;
+                    }
+
+                    if (shortPath[i][j] > shortPath[i][k] + shortPath[k][j] || shortPath[i][j] == 0)
+                    {
+                        shortPath[i][j] = shortPath[i][k] + shortPath[k][j];
+                    }
+                }
+            }
+        }
+
+        return shortPath;
     }
 }
