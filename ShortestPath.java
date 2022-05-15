@@ -136,6 +136,7 @@ public class ShortestPath
             shortPath[i] = graph[0][i];
         }
 
+        //Dijkstras
         for (int i = 0; i < size; i++)
         {
             int smallNode = 0;
@@ -143,15 +144,15 @@ public class ShortestPath
 
             for (int j = 0; j < size; j++)
             {
-                if (graph[selNode][j] != 0)
+                if (graph[selNode][j] != 0) //Checks node/vertex if empty
                 {
-                    if (smallVal == 0)
+                    if (smallVal == 0)  //Checks if small val has no value yet 
                     {
                         smallVal = graph[selNode][j] + prevSmallVal;
                         smallNode = j;
                     }
 
-                    if (smallVal > graph[selNode][j])
+                    if (smallVal > graph[selNode][j])   //Checks if small val is smaller or larger
                     {
                         smallVal = graph[selNode][j];
                         smallNode = j;
@@ -163,6 +164,7 @@ public class ShortestPath
             selNode = smallNode;
             prevSmallVal += smallVal;
 
+            //Checks if node is bigger or empty to add
             if (shortPath[selNode] > prevSmallVal || shortPath[selNode] == 0)
             {
                 shortPath[selNode] = prevSmallVal;  //places smallest value into graph
