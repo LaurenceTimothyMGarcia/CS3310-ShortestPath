@@ -14,6 +14,15 @@ public class ShortestPath
         //Keyboard input
         Scanner kb = new Scanner(System.in);
 
+        //Stopwatch related variables
+        long start = 0;
+        long end = 0;
+
+        //Arrays for results of graphs
+        int[] dijkstra;
+        int[] warshall;
+
+        //Setting up graph
         int graphSize = keyboardInput(kb);
         int graph[][] = new int[graphSize][graphSize];
 
@@ -37,8 +46,20 @@ public class ShortestPath
 
         System.out.println("Graph: ");
         printGraph(graph);
+        System.out.println();
 
-        dijkstraAlgorithm(graph, graphSize);
+
+        /*** Dijkstra's Algorithm ***/
+        //Times and runs Dijkstra's Algorithm
+        start = System.nanoTime();
+        dijkstra = dijkstraAlgorithm(graph, graphSize);
+        end = System.nanoTime();
+
+        //Prints out Dijkstra's Algorithm
+        System.out.println("Dijkstra's Algorithm");
+        System.out.println((double) ((end - start) / 1000000.0) + " Milliseconds");
+        printResults(dijkstra);
+        System.out.println();
     }
 
     public static int keyboardInput(Scanner kb)
@@ -122,9 +143,19 @@ public class ShortestPath
         System.out.println();
     }
 
+    /*** Prints Results of Algorithms ***/
+    public static void printResults(int[] result)
+    {
+        System.out.println("Results from Dijkstra's Algorithm");
+        for (int i = 1; i < result.length; i++)
+        {
+            System.out.printf("1 -> %d: %d\n", i + 1, result[i]);
+        }
+    }
+
 
     /*** Dijkstras Algorithm ***/
-    public static void dijkstraAlgorithm(int[][] graph, int size)
+    public static int[] dijkstraAlgorithm(int[][] graph, int size)
     {
         int[] shortPath = new int[size];
         int selNode = 0;
@@ -170,12 +201,14 @@ public class ShortestPath
                 shortPath[selNode] = prevSmallVal;  //places smallest value into graph
             }
 
-            System.out.println("SelNode: " + selNode);
+            /*System.out.println("SelNode: " + selNode);
             System.out.println("Previous Small Value: " + prevSmallVal);
             System.out.println("Shortest Path nodes: ");
             printArray(shortPath);
-            System.out.println();
+            System.out.println();*/
         }
+
+        return shortPath;
     }
 
     /*** Floyd Warshall Algorithm ***/
