@@ -147,9 +147,9 @@ public class ShortestPath
                 {
                     if (smallVal == 0)
                     {
-                        smallVal = graph[selNode][j];
+                        smallVal = graph[selNode][j] + prevSmallVal;
                     }
-
+                    
                     if (smallVal > graph[selNode][j])
                     {
                         smallVal = graph[selNode][j];
@@ -164,6 +164,7 @@ public class ShortestPath
             shortPath[selNode] = prevSmallVal;  //places smallest value into graph
 
             System.out.println("SelNode: " + selNode);
+            System.out.println("Previous Small Value: " + prevSmallVal);
             System.out.println("Shortest Path nodes: ");
             printArray(shortPath);
             System.out.println();
