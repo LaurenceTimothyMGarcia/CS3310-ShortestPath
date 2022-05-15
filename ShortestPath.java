@@ -216,5 +216,8 @@ public class ShortestPath
     }
 
     /*** Floyd Warshall Algorithm ***/
-    
+    public static void FWarshallAlgorithm (int[][] graph, int size)
+    {
+        
+    }
 }
