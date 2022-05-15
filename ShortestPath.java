@@ -128,6 +128,7 @@ public class ShortestPath
     {
         int[] shortPath = new int[size];
         int selNode = 0;
+        int prevSmallVal = 0;
 
         //Adds pathways from starting node
         for (int i = 0; i < size; i++)
@@ -142,20 +143,25 @@ public class ShortestPath
 
             for (int j = 0; j < size; j++)
             {
-                if (smallVal == 0 && graph[selNode][j] != 0)
+                if (graph[selNode][j] != 0)
                 {
-                    smallVal = graph[selNode][j];
-                }
+                    if (smallVal == 0)
+                    {
+                        smallVal = graph[selNode][j];
+                    }
 
-                if (smallVal > graph[selNode][j])
-                {
-                    smallVal = graph[selNode][j];
-                    smallNode = j;
+                    if (smallVal > graph[selNode][j])
+                    {
+                        smallVal = graph[selNode][j];
+                        smallNode = j;
+                    }
                 }
+                
             }
 
             selNode = smallNode;
-            shortPath[selNode] = smallVal;  //places smallest value into graph
+            prevSmallVal += smallVal;
+            shortPath[selNode] = prevSmallVal;  //places smallest value into graph
 
             System.out.println("SelNode: " + selNode);
             System.out.println("Shortest Path nodes: ");
