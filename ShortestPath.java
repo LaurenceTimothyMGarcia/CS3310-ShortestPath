@@ -148,6 +148,7 @@ public class ShortestPath
                     if (smallVal == 0)
                     {
                         smallVal = graph[selNode][j] + prevSmallVal;
+                        smallNode = j;
                     }
 
                     if (smallVal > graph[selNode][j])
