@@ -236,16 +236,17 @@ public class ShortestPath
             {
                 for (int j = 0; j < size; j++)
                 {
-                    if (i == j)
+                    if (i == j) //checks if node is at self
                     {
                         continue;
                     }
 
-                    if (graph[i][k] == 0 || graph[k][j] == 0)
+                    if (graph[i][k] == 0 || graph[k][j] == 0)   //checks if node goes somewhere
                     {
                         continue;
                     }
 
+                    //main check then pushes to new matrix if correct
                     if (graph[i][j] > graph[i][k] + graph[k][j] || shortPath[i][j] == 0)
                     {
                         shortPath[i][j] = shortPath[i][k] + shortPath[k][j];
@@ -255,8 +256,9 @@ public class ShortestPath
 
             graph = shortPath;
 
-            printGraph(shortPath);
-            System.out.println();
+            //Debugging
+            //printGraph(shortPath);
+            //System.out.println();
         }
 
         return shortPath;
